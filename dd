@@ -1,0 +1,62 @@
+def cum_time(time_list: List[str]) -> float:
+    """
+    function that takes a List[str] in time format as input and calculates the difference between two times
+    
+    Args:
+        time_list (List[str]): A list with start time and end time as elements of type str, where time is in the format "%H:%M:%S.%f"
+        ex) time_list = ["00:25:36.840", "00:25:38.090"]
+    """
+    time_format = "%H:%M:%S.%f"
+    time1 = datetime.strptime(time_list[0].strip(), time_format)
+    time2 = datetime.strptime(time_list[1].strip(), time_format)
+    time_difference = time2 - time1
+    # seconds = round(time_difference.total_seconds(), 2)
+    seconds = time_difference.total_seconds()
+    return seconds
+
+
+def preprocess_vtt(script: str) -> str:
+    """
+    functions to combine utterances from a ZOOM VTT file based on dialogue turns and calculate utterance duration.
+    
+    Args:
+        script (str): text from zoom vtt 
+    """
+    contents = ""
+    previous_speaker = None
+    time_cummulative = 0
+
+    for text in script.split("\n\n"):
+        lines = text.split("\n")
+
+        try:
+            times = lines[1].split(" --> ")
+            time_spend = cum_time(times)
+            conversation = lines[-1].split(": ")
+            speaker = conversation[0]
+            content = conversation[1]
+            
+            if previous_speaker is None:   # When it's first conversation
+                contents += speaker + ": " + content
+                time_cummulative += time_spend
+
+            elif speaker == previous_speaker: # When the speaker is the same
+                contents += " " + content
+                time_cummulative += time_spend
+                
+            else: # When the speaker changes
+                contents += f" ({time_cummulative:.2f} seconds)"
+                contents += "\n"
+                contents += speaker + ": " + content
+                time_cummulative = time_spend
+                
+            previous_speaker = speaker
+
+        except:
+            pass
+
+    # Add the time of the last utterance
+    contents += f" ({time_cummulative:.2f} seconds)"
+    contents = contents.strip()
+    contents = contents.replace(r"\s+", "\s")
+    return contents
