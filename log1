@@ -1,0 +1,138 @@
+[notice] A new release of pip is available: 24.2 -> 26.0.1
+[notice] To update, run: python3.9 -m pip install --upgrade pip
+2026-06-02 16:09:31 - INFO - ... ENV /datasets/DTS2025000001/data/lessons_250516.xlsx
+2026-06-02 16:09:31 - ERROR - Exception in worker process
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/dist-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python3.9/dist-packages/uvicorn/workers.py", line 75, in init_process
+    super().init_process()
+  File "/usr/local/lib/python3.9/dist-packages/gunicorn/workers/base.py", line 135, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python3.9/dist-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python3.9/dist-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python3.9/dist-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+  File "/usr/local/lib/python3.9/dist-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/local/lib/python3.9/dist-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/infer-model/1_MDL20260001/source/flow/app/main.py", line 18, in <module>
+    from apis.generate import generator
+  File "/infer-model/1_MDL20260001/source/flow/app/apis/generate.py", line 26, in <module>
+    lessons_df = pd.read_excel(DATA_PATH, skiprows=[1])
+  File "/usr/local/lib/python3.9/dist-packages/pandas/io/excel/_base.py", line 495, in read_excel
+    io = ExcelFile(
+  File "/usr/local/lib/python3.9/dist-packages/pandas/io/excel/_base.py", line 1550, in __init__
+    ext = inspect_excel_format(
+  File "/usr/local/lib/python3.9/dist-packages/pandas/io/excel/_base.py", line 1402, in inspect_excel_format
+    with get_handle(
+  File "/usr/local/lib/python3.9/dist-packages/pandas/io/common.py", line 882, in get_handle
+    handle = open(handle, ioargs.mode)
+FileNotFoundError: [Errno 2] No such file or directory: '/datasets/DTS2025000001/data/lessons_250516.xlsx'
+2026-06-02 16:09:31 - INFO - Worker exiting (pid: 326)
+2026-06-02 16:09:32 - INFO - ... ENV /datasets/DTS2025000001/data/lessons_250516.xlsx
+2026-06-02 16:09:32 - ERROR - Exception in worker process
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/dist-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python3.9/dist-packages/uvicorn/workers.py", line 75, in init_process
+    super().init_process()
+  File "/usr/local/lib/python3.9/dist-packages/gunicorn/workers/base.py", line 135, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python3.9/dist-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python3.9/dist-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python3.9/dist-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+  File "/usr/local/lib/python3.9/dist-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/local/lib/python3.9/dist-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/infer-model/1_MDL20260001/source/flow/app/main.py", line 18, in <module>
+    from apis.generate import generator
+  File "/infer-model/1_MDL20260001/source/flow/app/apis/generate.py", line 26, in <module>
+    lessons_df = pd.read_excel(DATA_PATH, skiprows=[1])
+  File "/usr/local/lib/python3.9/dist-packages/pandas/io/excel/_base.py", line 495, in read_excel
+    io = ExcelFile(
+  File "/usr/local/lib/python3.9/dist-packages/pandas/io/excel/_base.py", line 1550, in __init__
+    ext = inspect_excel_format(
+  File "/usr/local/lib/python3.9/dist-packages/pandas/io/excel/_base.py", line 1402, in inspect_excel_format
+    with get_handle(
+  File "/usr/local/lib/python3.9/dist-packages/pandas/io/common.py", line 882, in get_handle
+    handle = open(handle, ioargs.mode)
+FileNotFoundError: [Errno 2] No such file or directory: '/datasets/DTS2025000001/data/lessons_250516.xlsx'
+2026-06-02 16:09:32 - INFO - Worker exiting (pid: 327)
+2026-06-02 16:09:32 - INFO - ... ENV /datasets/DTS2025000001/data/lessons_250516.xlsx
+2026-06-02 16:09:32 - ERROR - Exception in worker process
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/dist-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python3.9/dist-packages/uvicorn/workers.py", line 75, in init_process
+    super().init_process()
+  File "/usr/local/lib/python3.9/dist-packages/gunicorn/workers/base.py", line 135, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python3.9/dist-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python3.9/dist-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python3.9/dist-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+  File "/usr/local/lib/python3.9/dist-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/local/lib/python3.9/dist-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/infer-model/1_MDL20260001/source/flow/app/main.py", line 18, in <module>
+    from apis.generate import generator
+  File "/infer-model/1_MDL20260001/source/flow/app/apis/generate.py", line 26, in <module>
+    lessons_df = pd.read_excel(DATA_PATH, skiprows=[1])
+  File "/usr/local/lib/python3.9/dist-packages/pandas/io/excel/_base.py", line 495, in read_excel
+    io = ExcelFile(
+  File "/usr/local/lib/python3.9/dist-packages/pandas/io/excel/_base.py", line 1550, in __init__
+    ext = inspect_excel_format(
+  File "/usr/local/lib/python3.9/dist-packages/pandas/io/excel/_base.py", line 1402, in inspect_excel_format
+    with get_handle(
+  File "/usr/local/lib/python3.9/dist-packages/pandas/io/common.py", line 882, in get_handle
+    handle = open(handle, ioargs.mode)
+FileNotFoundError: [Errno 2] No such file or directory: '/datasets/DTS2025000001/data/lessons_250516.xlsx'
+2026-06-02 16:09:32 - INFO - Worker exiting (pid: 329)
+2026-06-02 16:09:32 - INFO - ... ENV /datasets/DTS2025000001/data/lessons_250516.xlsx
+ERROR|2026-06-02 16:09:32|Worker (pid:326) exited with code 3
+ERROR|2026-06-02 16:09:32|Worker (pid:328) was sent SIGTERM!
+ERROR|2026-06-02 16:09:32|Worker (pid:329) was sent SIGTERM!
+ERROR|2026-06-02 16:09:32|Worker (pid:330) was sent SIGTERM!
+ERROR|2026-06-02 16:09:32|Worker (pid:331) was sent SIGTERM!
+ERROR|2026-06-02 16:09:32|Worker (pid:332) was sent SIGTERM!
+ERROR|2026-06-02 16:09:32|Worker (pid:333) was sent SIGTERM!
+ERROR|2026-06-02 16:09:32|Worker (pid:327) was sent SIGTERM!
+ERROR|2026-06-02 16:09:32|Shutting down: Master
+ERROR|2026-06-02 16:09:32|Reason: Worker failed to boot.
+[I 2026-06-02 16:09:33.112] ** End of Custom Image Script: 3
+[I 2026-06-02 16:09:33.135] ** MLDL Simulation app luanching triggered..
