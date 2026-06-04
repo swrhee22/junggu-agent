@@ -1,0 +1,331 @@
+[I 2026-06-04 10:51:22.559] ** Copy User defaults: cp -rfv /infer-env/mldl/default/. /home/ds_user1/
+[I 2026-06-04 10:51:22.612] =========================================================================
+[I 2026-06-04 10:51:22.629] * Hostname / IP : ier2026060010-dp-5d9f8db995-gnxdv (100.64.189.134)
+[I 2026-06-04 10:51:22.644] * Working Directory : /infer-env
+[I 2026-06-04 10:51:22.661] ** Arguments :/1_MDL20260001/source/flow/run-application.sh
+[I 2026-06-04 10:51:22.677] * Initializing... (MODE: INFER_ENV)
+[I 2026-06-04 10:51:22.691] -------------------------------------------------------------------------
+[I 2026-06-04 10:51:22.706] * INIT Cloud Credentials
+[I 2026-06-04 10:51:22.739] * DONE Cloud Credentials
+[I 2026-06-04 10:51:22.753] * INIT SSH Service
+Generating public/private ecdsa key pair.
+Your identification has been saved in /home/ds_user1/.ssh/id_ecdsa
+Your public key has been saved in /home/ds_user1/.ssh/id_ecdsa.pub
+The key fingerprint is:
+SHA256:sWsRp0Q49E4DufnXiYFaPfOLHKaDYLyB6/K62Ny3WQk ds_user1@ier2026060010-dp-5d9f8db995-gnxdv
+The key's randomart image is:
++---[ECDSA 256]---+
+|     .oo.        |
+|      ++         |
+|       +Bo.      |
+|      o+oB=      |
+|   o  E+S  B .   |
+|  . = ...+= +    |
+|   o + .== o .   |
+|oo... o+o o .    |
+|+*= ..o. .       |
++----[SHA256]-----+
+[I 2026-06-04 10:51:22.904] start SSH Service
+[I 2026-06-04 10:51:22.904] start SSH Service
+ * Starting OpenBSD Secure Shell server sshd
+   ...done.
+[I 2026-06-04 10:51:22.963] * DONE SSH Service
+** PYTHONPATH set to :/infer-model/1_MDL20260001/source/flow
+[I 2026-06-04 10:51:26.007] ** Call Custom Image Script: /workspace/custom-infer-env.sh
+/infer-model
+└── 1_MDL20260001
+    ├── binary
+    │   ├── base
+    │   │   └── run-application.sh
+    │   └── converted
+    │       └── logs
+    ├── reference
+    └── source
+        ├── flow
+        │   ├── app
+        │   │   ├── README.md
+        │   │   ├── apis
+        │   │   │   ├── __init__.py
+        │   │   │   ├── generate.py
+        │   │   │   ├── reschedule.py
+        │   │   │   └── update.py
+        │   │   ├── config.py
+        │   │   ├── data
+        │   │   │   ├── lessons.xlsx
+        │   │   │   └── lessons_250516.xlsx
+        │   │   ├── gunicorn_config.py
+        │   │   ├── gunicorn_config.py.bak
+        │   │   ├── main.py
+        │   │   ├── models
+        │   │   │   ├── generate.py
+        │   │   │   ├── reschedule.py
+        │   │   │   └── update.py
+        │   │   ├── services
+        │   │   │   ├── scheduler.py
+        │   │   │   └── update.py
+        │   │   ├── utils.py
+        │   │   └── 스킬변경시로직.ipynb
+        │   ├── log.conf
+        │   ├── run-application.sh
+        │   └── run-application.sh.bak
+        └── params
+
+14 directories, 22 files
+file run-application.sh exists in /infer-model/1_MDL20260001/source/flow, export FLOW_APP_DIR: /infer-model/1_MDL20260001/source/flow
+[I 2026-06-04 10:51:26.245] 'run-application.sh' in /infer-model/1_MDL20260001/binary/base/run-application.sh, run run-application.sh instead !
+[I 2026-06-04 10:51:26.245] 'run-application.sh' in /infer-model/1_MDL20260001/binary/base/run-application.sh, run run-application.sh instead !
+/infer-model/1_MDL20260001/binary/base
+/infer-env
+PATH_APP: /infer-model/1_MDL20260001/binary/base/run-application.sh
+APP_DIR: /infer-model/1_MDL20260001/binary/base
+/infer-model/1_MDL20260001/binary/base
+└── run-application.sh
+
+0 directories, 1 file
+/infer-model/1_MDL20260001/binary/base
+========== LOG DEBUG START ==========
+PWD: /infer-model/1_MDL20260001/binary/base
+PATH_SOURCE: /infer-model/1_MDL20260001/source/flow
+PATH_LOG: /infer-env/logs
+HOSTNAME: ier2026060010-dp-5d9f8db995-gnxdv
+CREATION_DATE: 20260604
+POD_HASH: gnxdv
+=====================================
+@@@@@@@@@@@@@@@ 서비스용 log.conf 사용
+@@@@@@@@@@@@@@@ 현재 경로: /infer-model/1_MDL20260001/binary/base
+@@@@@@@@@@@@@@@ PATH_SOURCE: /infer-model/1_MDL20260001/source/flow
+@@@@@@@@@@@@@@@ GUNICORN_LOG_CONF: /infer-env/logs/log.conf
+========== FINAL GUNICORN_LOG_CONF ==========
+## =====================================================
+## BASIC
+## =====================================================
+[loggers]
+keys=root, gunicorn.error, gunicorn.access
+
+[handlers]
+keys=console, error_file, access_file
+
+[formatters]
+keys=generic
+
+
+## =====================================================
+## LOGGER
+## =====================================================
+[logger_root]
+level=WARN
+handlers=console
+propagate=1
+
+[logger_gunicorn.error]
+level=INFO
+handlers=error_file
+propagate=1
+qualname=gunicorn.error
+
+[logger_gunicorn.access]
+level=INFO
+handlers=access_file
+propagate=0
+qualname=gunicorn.access
+
+## =====================================================
+## HANDLER
+## =====================================================
+[handler_console]
+class=StreamHandler
+level=WARN
+formatter=generic
+args=(sys.stdout, )
+
+[handler_error_file]
+class=logging.handlers.WatchedFileHandler
+formatter=generic
+args=('/infer-env/logs/20260604_dlp_access_gnxdv.log',)
+
+[handler_access_file]
+class=logging.handlers.WatchedFileHandler
+formatter=generic
+args=('/infer-env/logs/20260604_dlp_access_gnxdv.log',)
+
+
+## =====================================================
+## FORMATTER
+## =====================================================
+
+[formatter_generic]
+format=%(levelname)-04s|%(asctime)s|%(message)s
+datefmt=%Y-%m-%d %H:%M:%S
+class=logging.Formatter
+
+=============================================
+========== LOGROTATE INSTALL CHECK ==========
+logrotate not found. Try installing logrotate...
+apt-get found. Installing logrotate with apt-get...
+Get:1 https://deb.nodesource.com/node_16.x focal InRelease [4583 B]
+Get:2 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64  InRelease [1581 B]
+Get:3 https://deb.nodesource.com/node_16.x focal/main amd64 Packages [776 B]
+Get:4 http://security.ubuntu.com/ubuntu focal-security InRelease [128 kB]
+Get:5 http://archive.ubuntu.com/ubuntu focal InRelease [265 kB]
+Get:6 http://ppa.launchpad.net/deadsnakes/ppa/ubuntu focal InRelease [18.1 kB]
+Get:7 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64  Packages [2821 kB]
+Get:8 http://security.ubuntu.com/ubuntu focal-security/universe amd64 Packages [1300 kB]
+Get:9 http://security.ubuntu.com/ubuntu focal-security/main amd64 Packages [4366 kB]
+Get:10 http://security.ubuntu.com/ubuntu focal-security/restricted amd64 Packages [4710 kB]
+Get:11 http://security.ubuntu.com/ubuntu focal-security/multiverse amd64 Packages [32.5 kB]
+Get:12 http://archive.ubuntu.com/ubuntu focal-updates InRelease [128 kB]
+Get:13 http://archive.ubuntu.com/ubuntu focal-backports InRelease [128 kB]
+Get:14 http://archive.ubuntu.com/ubuntu focal/multiverse amd64 Packages [177 kB]
+Get:15 http://archive.ubuntu.com/ubuntu focal/universe amd64 Packages [11.3 MB]
+Get:16 http://archive.ubuntu.com/ubuntu focal/main amd64 Packages [1275 kB]
+Get:17 http://archive.ubuntu.com/ubuntu focal/restricted amd64 Packages [33.4 kB]
+Get:18 http://archive.ubuntu.com/ubuntu focal-updates/restricted amd64 Packages [4904 kB]
+Get:19 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 Packages [4850 kB]
+Get:20 http://archive.ubuntu.com/ubuntu focal-updates/multiverse amd64 Packages [36.2 kB]
+Get:21 http://archive.ubuntu.com/ubuntu focal-updates/universe amd64 Packages [1588 kB]
+Get:22 http://archive.ubuntu.com/ubuntu focal-backports/main amd64 Packages [54.7 kB]
+Get:23 http://archive.ubuntu.com/ubuntu focal-backports/universe amd64 Packages [28.4 kB]
+Fetched 38.2 MB in 4s (10.8 MB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Suggested packages:
+  bsd-mailx | mailx
+The following NEW packages will be installed:
+  logrotate
+0 upgraded, 1 newly installed, 0 to remove and 128 not upgraded.
+Need to get 44.5 kB of archives.
+After this operation, 146 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu focal/main amd64 logrotate amd64 3.14.0-4ubuntu3 [44.5 kB]
+debconf: unable to initialize frontend: Dialog
+debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+dpkg-preconfigure: unable to re-open stdin: 
+Fetched 44.5 kB in 0s (855 kB/s)
+Selecting previously unselected package logrotate.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 31852 files and directories currently installed.)
+Preparing to unpack .../logrotate_3.14.0-4ubuntu3_amd64.deb ...
+Unpacking logrotate (3.14.0-4ubuntu3) ...
+Setting up logrotate (3.14.0-4ubuntu3) ...
+Created symlink /etc/systemd/system/timers.target.wants/logrotate.timer → /lib/systemd/system/logrotate.timer.
+logrotate installation success: /usr/sbin/logrotate
+logrotate 3.14.0
+
+    Default mail command:       /usr/bin/mail
+    Default compress command:   /bin/gzip
+    Default uncompress command: /bin/gunzip
+    Default compress extension: .gz
+    Default state file path:    /var/lib/logrotate/status
+    ACL support:                yes
+    SELinux support:            yes
+=============================================
+========== LOGROTATE CONFIG ==========
+ACCESS_LOG_FILE: 
+LOGROTATE_CONF: /infer-env/logs/logrotate_stdout.conf
+LOGROTATE_STATE: /infer-env/logs/logrotate_stdout.status
+/infer-env/logs/20260604_dlp_stdout_gnxdv.log {
+    hourly
+    rotate 48
+    missingok
+    ifempty
+    copytruncate
+    dateext
+    dateformat -%Y%m%d%H%M%S
+}
+======================================
+logrotate found. Start periodic logrotate test.
+LOGROTATE_INTERVAL_SECONDS: 60
+========== DATA DEBUG ==========
+DATA_ROOT: /infer-model/1_MDL20260001/source/flow/app/data
+DATA_NAME: lessons_250516.xlsx
+DATA_PATH: /infer-model/1_MDL20260001/source/flow/app/data/lessons_250516.xlsx
+-rwxrwxr-x 1 ds_user1 ds_user1 103543 Jun  4 10:50 /infer-model/1_MDL20260001/source/flow/app/data/lessons_250516.xlsx
+===============================
+Defaulting to user installation because normal site-packages is not writeable
+Collecting openpyxl
+  Downloading openpyxl-3.1.5-py2.py3-none-any.whl.metadata (2.5 kB)
+Collecting et-xmlfile (from openpyxl)
+  Downloading et_xmlfile-2.0.0-py3-none-any.whl.metadata (2.7 kB)
+Downloading openpyxl-3.1.5-py2.py3-none-any.whl (250 kB)
+Downloading et_xmlfile-2.0.0-py3-none-any.whl (18 kB)
+Installing collected packages: et-xmlfile, openpyxl
+Successfully installed et-xmlfile-2.0.0 openpyxl-3.1.5
+
+[notice] A new release of pip is available: 24.2 -> 26.0.1
+[notice] To update, run: python3.9 -m pip install --upgrade pip
+2026-06-04 10:51:39 - INFO - ... ENV /infer-model/1_MDL20260001/source/flow/app/data/lessons_250516.xlsx
+2026-06-04 10:51:40 - INFO - ... ENV /infer-model/1_MDL20260001/source/flow/app/data/lessons_250516.xlsx
+2026-06-04 10:51:40 - INFO - ... ENV /infer-model/1_MDL20260001/source/flow/app/data/lessons_250516.xlsx
+2026-06-04 10:51:40 - INFO - ... ENV /infer-model/1_MDL20260001/source/flow/app/data/lessons_250516.xlsx
+2026-06-04 10:51:41 - INFO - ... ENV /infer-model/1_MDL20260001/source/flow/app/data/lessons_250516.xlsx
+2026-06-04 10:51:41 - INFO - ... ENV /infer-model/1_MDL20260001/source/flow/app/data/lessons_250516.xlsx
+2026-06-04 10:51:41 - INFO - ... ENV /infer-model/1_MDL20260001/source/flow/app/data/lessons_250516.xlsx
+2026-06-04 10:51:41 - INFO - ... ENV /infer-model/1_MDL20260001/source/flow/app/data/lessons_250516.xlsx
+2026-06-04 10:51:42 - INFO - [GENERATE] LOAD SUCCESS
+2026-06-04 10:51:42 - INFO - ... ENV /infer-model/1_MDL20260001/source/flow/app/data/lessons_250516.xlsx
+2026-06-04 10:51:43 - INFO - [GENERATE] LOAD SUCCESS
+2026-06-04 10:51:43 - INFO - ... ENV /infer-model/1_MDL20260001/source/flow/app/data/lessons_250516.xlsx
+2026-06-04 10:51:43 - INFO - [GENERATE] LOAD SUCCESS
+2026-06-04 10:51:43 - INFO - ... ENV /infer-model/1_MDL20260001/source/flow/app/data/lessons_250516.xlsx
+2026-06-04 10:51:43 - INFO - [GENERATE] LOAD SUCCESS
+2026-06-04 10:51:43 - INFO - ... ENV /infer-model/1_MDL20260001/source/flow/app/data/lessons_250516.xlsx
+2026-06-04 10:51:43 - INFO - [GENERATE] LOAD SUCCESS
+2026-06-04 10:51:43 - INFO - ... ENV /infer-model/1_MDL20260001/source/flow/app/data/lessons_250516.xlsx
+2026-06-04 10:51:44 - INFO - [GENERATE] LOAD SUCCESS
+2026-06-04 10:51:44 - INFO - ... ENV /infer-model/1_MDL20260001/source/flow/app/data/lessons_250516.xlsx
+2026-06-04 10:51:44 - INFO - [GENERATE] LOAD SUCCESS
+2026-06-04 10:51:44 - INFO - [GENERATE] LOAD SUCCESS
+2026-06-04 10:51:44 - INFO - ... ENV /infer-model/1_MDL20260001/source/flow/app/data/lessons_250516.xlsx
+2026-06-04 10:51:44 - INFO - [UPDATE] LOAD SUCCESS
+2026-06-04 10:51:44 - INFO - ... ENV /infer-model/1_MDL20260001/source/flow/app/data/lessons_250516.xlsx
+2026-06-04 10:51:44 - INFO - ... ENV /infer-model/1_MDL20260001/source/flow/app/data/lessons_250516.xlsx
+2026-06-04 10:51:44 - INFO - [UPDATE] LOAD SUCCESS
+2026-06-04 10:51:44 - INFO - ... ENV /infer-model/1_MDL20260001/source/flow/app/data/lessons_250516.xlsx
+2026-06-04 10:51:45 - INFO - [UPDATE] LOAD SUCCESS
+2026-06-04 10:51:45 - INFO - ... ENV /infer-model/1_MDL20260001/source/flow/app/data/lessons_250516.xlsx
+2026-06-04 10:51:45 - INFO - [UPDATE] LOAD SUCCESS
+2026-06-04 10:51:45 - INFO - ... ENV /infer-model/1_MDL20260001/source/flow/app/data/lessons_250516.xlsx
+2026-06-04 10:51:45 - INFO - [UPDATE] LOAD SUCCESS
+2026-06-04 10:51:45 - INFO - ... ENV /infer-model/1_MDL20260001/source/flow/app/data/lessons_250516.xlsx
+2026-06-04 10:51:45 - INFO - [UPDATE] LOAD SUCCESS
+2026-06-04 10:51:46 - INFO - ... ENV /infer-model/1_MDL20260001/source/flow/app/data/lessons_250516.xlsx
+2026-06-04 10:51:46 - INFO - [UPDATE] LOAD SUCCESS
+2026-06-04 10:51:46 - INFO - [UPDATE] LOAD SUCCESS
+2026-06-04 10:51:46 - INFO - ... ENV /infer-model/1_MDL20260001/source/flow/app/data/lessons_250516.xlsx
+2026-06-04 10:51:46 - INFO - ... ENV /infer-model/1_MDL20260001/source/flow/app/data/lessons_250516.xlsx
+2026-06-04 10:51:46 - INFO - [RESCHEDULE] LOAD SUCCESS
+2026-06-04 10:51:46 - INFO - [RESCHEDULE] LOAD SUCCESS
+2026-06-04 10:51:46 - INFO - [RESCHEDULE] LOAD SUCCESS
+2026-06-04 10:51:47 - INFO - [RESCHEDULE] LOAD SUCCESS
+2026-06-04 10:51:47 - INFO - [RESCHEDULE] LOAD SUCCESS
+2026-06-04 10:51:47 - INFO - [RESCHEDULE] LOAD SUCCESS
+2026-06-04 10:51:47 - INFO - [RESCHEDULE] LOAD SUCCESS
+2026-06-04 10:51:47 - INFO - [RESCHEDULE] LOAD SUCCESS
+========== PERIODIC LOGROTATE START ==========
+Thu Jun  4 10:52:33 KST 2026
+ACCESS_LOG_FILE: 
+LOGROTATE_CONF: /infer-env/logs/logrotate_stdout.conf
+LOGROTATE_STATE: /infer-env/logs/logrotate_stdout.status
+reading config file /infer-env/logs/logrotate_stdout.conf
+Reading state from file: /infer-env/logs/logrotate_stdout.status
+Allocating hash table for state file, size 64 entries
+
+Handling 1 logs
+
+rotating pattern: /infer-env/logs/20260604_dlp_stdout_gnxdv.log  forced from command line (48 rotations)
+empty log files are rotated, old logs are removed
+considering log /infer-env/logs/20260604_dlp_stdout_gnxdv.log
+Creating new state
+  Now: 2026-06-04 10:52
+  Last rotated at 2026-06-04 10:00
+  log needs rotating
+rotating log /infer-env/logs/20260604_dlp_stdout_gnxdv.log, log->rotateCount is 48
+Converted ' -%Y%m%d%H%M%S' -> '-%Y%m%d%H%M%S'
+dateext suffix '-20260604105233'
+glob pattern '-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'
+glob finding old rotated logs failed
+copying /infer-env/logs/20260604_dlp_stdout_gnxdv.log to /infer-env/logs/20260604_dlp_stdout_gnxdv.log-20260604105233

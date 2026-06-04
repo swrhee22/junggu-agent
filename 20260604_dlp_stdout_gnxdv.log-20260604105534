@@ -1,0 +1,24 @@
+========== PERIODIC LOGROTATE END ==========
+========== PERIODIC LOGROTATE START ==========
+Thu Jun  4 10:55:34 KST 2026
+ACCESS_LOG_FILE: 
+LOGROTATE_CONF: /infer-env/logs/logrotate_stdout.conf
+LOGROTATE_STATE: /infer-env/logs/logrotate_stdout.status
+reading config file /infer-env/logs/logrotate_stdout.conf
+Reading state from file: /infer-env/logs/logrotate_stdout.status
+Allocating hash table for state file, size 64 entries
+Creating new state
+
+Handling 1 logs
+
+rotating pattern: /infer-env/logs/20260604_dlp_stdout_gnxdv.log  forced from command line (48 rotations)
+empty log files are rotated, old logs are removed
+considering log /infer-env/logs/20260604_dlp_stdout_gnxdv.log
+  Now: 2026-06-04 10:55
+  Last rotated at 2026-06-04 10:54
+  log needs rotating
+rotating log /infer-env/logs/20260604_dlp_stdout_gnxdv.log, log->rotateCount is 48
+Converted ' -%Y%m%d%H%M%S' -> '-%Y%m%d%H%M%S'
+dateext suffix '-20260604105534'
+glob pattern '-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'
+copying /infer-env/logs/20260604_dlp_stdout_gnxdv.log to /infer-env/logs/20260604_dlp_stdout_gnxdv.log-20260604105534
