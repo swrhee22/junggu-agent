@@ -1,0 +1,179 @@
+#!/bin/bash
+# -*- coding: utf-8 -*-
+
+export ENVIRONMENT=prod
+
+# ===================================================
+# ORCHESTRATOR 에서 참조하는 경로 설정
+# ===================================================
+if [ -d "/infer-model" ]; then
+    export PATH_SOURCE=`tree -ifd /infer-model | grep flow | head -n 1`
+    # export PATH_TEMP="$PATH_INFER_ENV/temp"
+    # export PATH_MODEL="$PATH_TEMP"
+else
+    echo "DEV...."
+    export PATH_SOURCE="/project/work/flow"
+    # export PATH_SOURCE="/shared/250328_스케줄output변경"
+    # export PATH_MODEL="$PATH_TEMP"
+fi
+
+# mkdir -p $PATH_TEMP
+
+
+# ===================================================
+# DEFAULT
+# ===================================================
+# log setting
+CREATION_DATE=`date '+%Y%m%d'`
+POD_HASH=${HOSTNAME##*-}
+
+echo "========== LOG DEBUG START =========="
+echo "PWD: $(pwd)"
+echo "PATH_SOURCE: $PATH_SOURCE"
+echo "PATH_LOG: $PATH_LOG"
+echo "HOSTNAME: $HOSTNAME"
+echo "CREATION_DATE: $CREATION_DATE"
+echo "POD_HASH: $POD_HASH"
+echo "====================================="
+
+
+# ===================================================
+# LOG CONFIG
+# ===================================================
+# 서비스 전용 log.conf가 있으면 그것을 사용
+# 없으면 플랫폼 기본 log.conf를 복사해서 사용
+if [ -f "$PATH_SOURCE/log.conf" ]; then
+
+    cp -rf "$PATH_SOURCE/log.conf" "$PATH_LOG/log.conf"
+    export GUNICORN_LOG_CONF="$PATH_LOG/log.conf"
+
+    echo "@@@@@@@@@@@@@@@ 서비스용 log.conf 사용"
+    echo "@@@@@@@@@@@@@@@ 현재 경로: $(pwd)"
+    echo "@@@@@@@@@@@@@@@ PATH_SOURCE: $PATH_SOURCE"
+    echo "@@@@@@@@@@@@@@@ GUNICORN_LOG_CONF: $GUNICORN_LOG_CONF"
+
+else
+
+    cp -rf "/workspace/.built_in_script/inference/log.conf" "$PATH_LOG/log.conf"
+    export GUNICORN_LOG_CONF="$PATH_LOG/log.conf"
+
+    echo "@@@@@@@@@@@@@@@ 기본 log.conf 사용"
+    echo "@@@@@@@@@@@@@@@ 현재 경로: $(pwd)"
+    echo "@@@@@@@@@@@@@@@ PATH_SOURCE: $PATH_SOURCE"
+    echo "@@@@@@@@@@@@@@@ GUNICORN_LOG_CONF: $GUNICORN_LOG_CONF"
+
+fi
+
+
+# ===================================================
+# LOG FILE PATH 치환
+# ===================================================
+sudo sed -i "s#PATH_LOG#$PATH_LOG/CREATION_DATE_dlp_access_POD_HASH.log#g" "$GUNICORN_LOG_CONF"
+sudo sed -i "s/CREATION_DATE/${CREATION_DATE}/g" "$GUNICORN_LOG_CONF"
+sudo sed -i "s/POD_HASH/${POD_HASH}/g" "$GUNICORN_LOG_CONF"
+
+echo "========== FINAL GUNICORN_LOG_CONF =========="
+cat "$GUNICORN_LOG_CONF"
+echo "============================================="
+
+# ===================================================
+# INSTALL LOGROTATE
+# 개발환경 테스트용
+# 운영 반영 시에는 추론이미지에 logrotate가 포함되도록 구성하는 것이 권장됨
+# ===================================================
+if ! command -v logrotate >/dev/null 2>&1; then
+    echo "logrotate not found. Try installing logrotate..."
+
+    if command -v apt-get >/dev/null 2>&1; then
+        sudo apt-get update
+        sudo apt-get install -y logrotate
+    elif command -v yum >/dev/null 2>&1; then
+        sudo yum install -y logrotate
+    elif command -v apk >/dev/null 2>&1; then
+        sudo apk add logrotate
+    else
+        echo "No supported package manager found. Cannot install logrotate."
+    fi
+else
+    echo "logrotate already installed: $(which logrotate)"
+fi
+
+if command -v logrotate >/dev/null 2>&1; then
+    echo "logrotate available: $(which logrotate)"
+    logrotate --version
+else
+    echo "logrotate installation failed or unavailable."
+fi
+
+# ===================================================
+# LOGROTATE CONFIG
+# ===================================================
+export ACCESS_LOG_FILE="$PATH_LOG/${CREATION_DATE}_dlp_access_${POD_HASH}.log"
+export LOGROTATE_CONF="$PATH_LOG/logrotate_access.conf"
+export LOGROTATE_STATE="$PATH_LOG/logrotate_access.status"
+
+cat > "$LOGROTATE_CONF" <<EOF
+$ACCESS_LOG_FILE {
+    hourly
+    rotate 48
+    missingok
+    notifempty
+    dateext
+    dateformat -%Y%m%d%H
+    nocreate
+}
+EOF
+
+echo "========== LOGROTATE CONFIG =========="
+echo "ACCESS_LOG_FILE: $ACCESS_LOG_FILE"
+echo "LOGROTATE_CONF: $LOGROTATE_CONF"
+echo "LOGROTATE_STATE: $LOGROTATE_STATE"
+cat "$LOGROTATE_CONF"
+echo "======================================"
+
+# ===================================================
+# LOGROTATE TEST - 개발환경 검증용
+# ===================================================
+if command -v logrotate >/dev/null 2>&1; then
+    echo "logrotate found: $(which logrotate)"
+
+    (
+        sleep 60
+        echo "========== FORCE LOGROTATE TEST START =========="
+        logrotate -f -v -s "$LOGROTATE_STATE" "$LOGROTATE_CONF"
+        echo "========== FORCE LOGROTATE TEST END =========="
+    ) &
+
+else
+    echo "logrotate command not found"
+fi
+
+
+# ===================================================
+# APP 실행
+# ===================================================
+# tar -zxvf sample_app.tgz -C $PATH_TEMP
+# cp ./gunicorn_config.py $PATH_TEMP/sample_app/
+# cp ./gunicorn_config.py $PATH_SOURCE/sample_app/
+
+# cd $PATH_TEMP/sample_app
+cd "$PATH_SOURCE/app"
+
+# 데이터 파일 경로 설정
+export DATA_ROOT="$PATH_SOURCE/app/data"
+export DATA_NAME="lessons_250516.xlsx"
+
+echo "========== DATA DEBUG =========="
+echo "DATA_ROOT: $DATA_ROOT"
+echo "DATA_NAME: $DATA_NAME"
+echo "DATA_PATH: $DATA_ROOT/$DATA_NAME"
+ls -al "$DATA_ROOT/$DATA_NAME" 2>/dev/null || echo "NO DATA FILE: $DATA_ROOT/$DATA_NAME"
+echo "==============================="
+
+# bash run-ui.sh&
+# sudo pip install streamlit
+# streamlit run app.py --server.port 9101 &
+
+pip install openpyxl
+
+gunicorn main:app --config gunicorn_config.py --log-config "$GUNICORN_LOG_CONF"
