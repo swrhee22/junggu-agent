@@ -1,0 +1,406 @@
+[I 2026-06-09 16:37:05.361] ** Copy User defaults: cp -rfv /infer-env/mldl/default/. /home/ds_user1/
+[I 2026-06-09 16:37:05.414] =========================================================================
+[I 2026-06-09 16:37:05.429] * Hostname / IP : ier2026060033-dp-5c9949d6b4-vwgzt (100.64.248.44)
+[I 2026-06-09 16:37:05.444] * Working Directory : /infer-env
+[I 2026-06-09 16:37:05.459] ** Arguments :/1_MDL20240008/source/flow/run-application.sh
+[I 2026-06-09 16:37:05.473] * Initializing... (MODE: INFER_ENV)
+[I 2026-06-09 16:37:05.488] -------------------------------------------------------------------------
+[I 2026-06-09 16:37:05.503] * INIT Cloud Credentials
+[I 2026-06-09 16:37:05.535] * DONE Cloud Credentials
+[I 2026-06-09 16:37:05.547] * INIT SSH Service
+Generating public/private ecdsa key pair.
+Your identification has been saved in /home/ds_user1/.ssh/id_ecdsa
+Your public key has been saved in /home/ds_user1/.ssh/id_ecdsa.pub
+The key fingerprint is:
+SHA256:SPzIGDz74aM2qNdTwRhj72e98McC3mjChfRuHTD9XEg ds_user1@ier2026060033-dp-5c9949d6b4-vwgzt
+The key's randomart image is:
++---[ECDSA 256]---+
+|                 |
+|   .+.      E    |
+|   .+*o  . . .   |
+|    .B=+o . . .  |
+|    oo=+S+ o .   |
+|     o+.B o o    |
+|   o o+* B +     |
+|  o =.o.* * o    |
+|.o ..o +   o     |
++----[SHA256]-----+
+[I 2026-06-09 16:37:05.722] start SSH Service
+[I 2026-06-09 16:37:05.722] start SSH Service
+ * Starting OpenBSD Secure Shell server sshd
+   ...done.
+[I 2026-06-09 16:37:05.788] * DONE SSH Service
+** PYTHONPATH set to :/infer-model/1_MDL20240008/source/flow
+[I 2026-06-09 16:37:08.727] ** Call Custom Image Script: /workspace/custom-infer-env.sh
+/infer-model
+└── 1_MDL20240008
+    ├── binary
+    │   ├── base
+    │   │   └── run-application.sh
+    │   └── converted
+    │       └── logs
+    ├── reference
+    └── source
+        ├── flow
+        │   ├── app
+        │   │   ├── README.md
+        │   │   ├── client_langchain.py
+        │   │   ├── client_langchain.py.bak
+        │   │   ├── gunicorn_config.py
+        │   │   ├── main.py
+        │   │   ├── prompts
+        │   │   │   ├── evaluation-org-251020.yaml
+        │   │   │   ├── evaluation.yaml
+        │   │   │   ├── evaluation.yaml.bak
+        │   │   │   ├── evaluation_250625.yaml
+        │   │   │   ├── evaluation_oldd.yaml
+        │   │   │   ├── extraction-org-251020.yaml
+        │   │   │   ├── extraction.yaml
+        │   │   │   └── parameters.yaml
+        │   │   ├── static
+        │   │   │   ├── redoc.standalone.js
+        │   │   │   ├── swagger-ui-bundle.js
+        │   │   │   └── swagger-ui.css
+        │   │   └── utils.py
+        │   ├── client.ipynb
+        │   ├── run-application.sh
+        │   └── test.ipynb
+        └── params
+
+12 directories, 21 files
+file run-application.sh exists in /infer-model/1_MDL20240008/source/flow, export FLOW_APP_DIR: /infer-model/1_MDL20240008/source/flow
+[I 2026-06-09 16:37:08.944] 'run-application.sh' in /infer-model/1_MDL20240008/binary/base/run-application.sh, run run-application.sh instead !
+[I 2026-06-09 16:37:08.944] 'run-application.sh' in /infer-model/1_MDL20240008/binary/base/run-application.sh, run run-application.sh instead !
+/infer-model/1_MDL20240008/binary/base
+/infer-env
+PATH_APP: /infer-model/1_MDL20240008/binary/base/run-application.sh
+APP_DIR: /infer-model/1_MDL20240008/binary/base
+/infer-model/1_MDL20240008/binary/base
+└── run-application.sh
+
+0 directories, 1 file
+/infer-model/1_MDL20240008/binary/base
+/infer-env/logs
+/workspace/.built_in_script/inference/log.conf
+[2026-06-09 16:37:09 +0900] [292] [INFO] Starting gunicorn 23.0.0
+[2026-06-09 16:37:09 +0900] [292] [INFO] Listening at: http://0.0.0.0:8000 (292)
+[2026-06-09 16:37:09 +0900] [292] [INFO] Using worker: uvicorn.workers.UvicornWorker
+[2026-06-09 16:37:09 +0900] [325] [INFO] Booting worker with pid: 325
+[2026-06-09 16:37:09 +0900] [326] [INFO] Booting worker with pid: 326
+[2026-06-09 16:37:10 +0900] [327] [INFO] Booting worker with pid: 327
+[2026-06-09 16:37:10 +0900] [328] [INFO] Booting worker with pid: 328
+[2026-06-09 16:37:10 +0900] [329] [INFO] Booting worker with pid: 329
+[2026-06-09 16:37:10 +0900] [330] [INFO] Booting worker with pid: 330
+[2026-06-09 16:37:10 +0900] [331] [INFO] Booting worker with pid: 331
+[2026-06-09 16:37:10 +0900] [332] [INFO] Booting worker with pid: 332
+run-application.sh: line 63:   292 Killed                  gunicorn main:app --config gunicorn_config.py
+[I 2026-06-09 16:37:16.055] ** End of Custom Image Script: 137
+[I 2026-06-09 16:37:16.243] ** MLDL Simulation app luanching triggered..
+ERROR|2026-06-09 16:37:17|Connection in use: ('0.0.0.0', 8000)
+ERROR|2026-06-09 16:37:17|connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+ERROR|2026-06-09 16:37:19|Connection in use: ('0.0.0.0', 8000)
+ERROR|2026-06-09 16:37:19|connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+ERROR|2026-06-09 16:37:20|Connection in use: ('0.0.0.0', 8000)
+ERROR|2026-06-09 16:37:20|connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+ERROR|2026-06-09 16:37:21|Connection in use: ('0.0.0.0', 8000)
+ERROR|2026-06-09 16:37:21|connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+ERROR|2026-06-09 16:37:22|Connection in use: ('0.0.0.0', 8000)
+ERROR|2026-06-09 16:37:22|connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+ERROR|2026-06-09 16:37:23|Can't connect to ('0.0.0.0', 8000)
+[I 2026-06-09 16:37:24.474] ** Copy User defaults: cp -rfv /infer-env/mldl/default/. /home/ds_user1/
+[I 2026-06-09 16:37:24.500] =========================================================================
+[I 2026-06-09 16:37:24.515] * Hostname / IP : ier2026060033-dp-5c9949d6b4-vwgzt (100.64.248.44)
+[I 2026-06-09 16:37:24.530] * Working Directory : /infer-env
+[I 2026-06-09 16:37:24.544] ** Arguments :/1_MDL20240008/source/flow/run-application.sh
+[I 2026-06-09 16:37:24.559] * Initializing... (MODE: INFER_ENV)
+[I 2026-06-09 16:37:24.574] -------------------------------------------------------------------------
+[I 2026-06-09 16:37:24.588] * INIT Cloud Credentials
+[I 2026-06-09 16:37:24.616] * DONE Cloud Credentials
+[I 2026-06-09 16:37:24.628] * INIT SSH Service
+[I 2026-06-09 16:37:24.705] start SSH Service
+[I 2026-06-09 16:37:24.705] start SSH Service
+ * Starting OpenBSD Secure Shell server sshd
+   ...done.
+[I 2026-06-09 16:37:24.761] * DONE SSH Service
+** PYTHONPATH set to :/infer-model/1_MDL20240008/source/flow
+[I 2026-06-09 16:37:27.768] ** Call Custom Image Script: /workspace/custom-infer-env.sh
+/infer-model
+└── 1_MDL20240008
+    ├── binary
+    │   ├── base
+    │   │   └── run-application.sh
+    │   └── converted
+    │       └── logs
+    ├── reference
+    └── source
+        ├── flow
+        │   ├── app
+        │   │   ├── README.md
+        │   │   ├── client_langchain.py
+        │   │   ├── client_langchain.py.bak
+        │   │   ├── gunicorn_config.py
+        │   │   ├── main.py
+        │   │   ├── prompts
+        │   │   │   ├── evaluation-org-251020.yaml
+        │   │   │   ├── evaluation.yaml
+        │   │   │   ├── evaluation.yaml.bak
+        │   │   │   ├── evaluation_250625.yaml
+        │   │   │   ├── evaluation_oldd.yaml
+        │   │   │   ├── extraction-org-251020.yaml
+        │   │   │   ├── extraction.yaml
+        │   │   │   └── parameters.yaml
+        │   │   ├── static
+        │   │   │   ├── redoc.standalone.js
+        │   │   │   ├── swagger-ui-bundle.js
+        │   │   │   └── swagger-ui.css
+        │   │   └── utils.py
+        │   ├── client.ipynb
+        │   ├── run-application.sh
+        │   └── test.ipynb
+        └── params
+
+12 directories, 21 files
+file run-application.sh exists in /infer-model/1_MDL20240008/source/flow, export FLOW_APP_DIR: /infer-model/1_MDL20240008/source/flow
+[I 2026-06-09 16:37:27.887] 'run-application.sh' in /infer-model/1_MDL20240008/binary/base/run-application.sh, run run-application.sh instead !
+[I 2026-06-09 16:37:27.887] 'run-application.sh' in /infer-model/1_MDL20240008/binary/base/run-application.sh, run run-application.sh instead !
+/infer-model/1_MDL20240008/binary/base
+/infer-env
+PATH_APP: /infer-model/1_MDL20240008/binary/base/run-application.sh
+APP_DIR: /infer-model/1_MDL20240008/binary/base
+/infer-model/1_MDL20240008/binary/base
+└── run-application.sh
+
+0 directories, 1 file
+/infer-model/1_MDL20240008/binary/base
+/infer-env/logs
+/workspace/.built_in_script/inference/log.conf
+[2026-06-09 16:37:28 +0900] [286] [INFO] Starting gunicorn 23.0.0
+[2026-06-09 16:37:28 +0900] [286] [INFO] Listening at: http://0.0.0.0:8000 (286)
+[2026-06-09 16:37:28 +0900] [286] [INFO] Using worker: uvicorn.workers.UvicornWorker
+[2026-06-09 16:37:28 +0900] [319] [INFO] Booting worker with pid: 319
+[2026-06-09 16:37:28 +0900] [320] [INFO] Booting worker with pid: 320
+[2026-06-09 16:37:28 +0900] [321] [INFO] Booting worker with pid: 321
+[2026-06-09 16:37:28 +0900] [322] [INFO] Booting worker with pid: 322
+[2026-06-09 16:37:28 +0900] [323] [INFO] Booting worker with pid: 323
+[2026-06-09 16:37:29 +0900] [324] [INFO] Booting worker with pid: 324
+[2026-06-09 16:37:29 +0900] [325] [INFO] Booting worker with pid: 325
+[2026-06-09 16:37:29 +0900] [326] [INFO] Booting worker with pid: 326
+run-application.sh: line 63:   286 Killed                  gunicorn main:app --config gunicorn_config.py
+[I 2026-06-09 16:37:34.852] ** End of Custom Image Script: 137
+[I 2026-06-09 16:37:35.045] ** MLDL Simulation app luanching triggered..
+ERROR|2026-06-09 16:37:36|Connection in use: ('0.0.0.0', 8000)
+ERROR|2026-06-09 16:37:36|connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+ERROR|2026-06-09 16:37:37|Connection in use: ('0.0.0.0', 8000)
+ERROR|2026-06-09 16:37:37|connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+ERROR|2026-06-09 16:37:38|Connection in use: ('0.0.0.0', 8000)
+ERROR|2026-06-09 16:37:38|connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+ERROR|2026-06-09 16:37:39|Connection in use: ('0.0.0.0', 8000)
+ERROR|2026-06-09 16:37:40|connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+ERROR|2026-06-09 16:37:41|Connection in use: ('0.0.0.0', 8000)
+ERROR|2026-06-09 16:37:41|connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+ * Serving Flask app "dap_mldl.inference.simulation.simulation_app_core" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ERROR|2026-06-09 16:37:42|Can't connect to ('0.0.0.0', 8000)
+[I 2026-06-09 16:37:56.673] ** Copy User defaults: cp -rfv /infer-env/mldl/default/. /home/ds_user1/
+[I 2026-06-09 16:37:56.692] =========================================================================
+[I 2026-06-09 16:37:56.706] * Hostname / IP : ier2026060033-dp-5c9949d6b4-vwgzt (100.64.248.44)
+[I 2026-06-09 16:37:56.721] * Working Directory : /infer-env
+[I 2026-06-09 16:37:56.737] ** Arguments :/1_MDL20240008/source/flow/run-application.sh
+[I 2026-06-09 16:37:56.752] * Initializing... (MODE: INFER_ENV)
+[I 2026-06-09 16:37:56.766] -------------------------------------------------------------------------
+[I 2026-06-09 16:37:56.781] * INIT Cloud Credentials
+[I 2026-06-09 16:37:56.811] * DONE Cloud Credentials
+[I 2026-06-09 16:37:56.824] * INIT SSH Service
+[I 2026-06-09 16:37:56.890] start SSH Service
+[I 2026-06-09 16:37:56.890] start SSH Service
+ * Starting OpenBSD Secure Shell server sshd
+   ...done.
+[I 2026-06-09 16:37:56.944] * DONE SSH Service
+** PYTHONPATH set to :/infer-model/1_MDL20240008/source/flow
+[I 2026-06-09 16:37:59.936] ** Call Custom Image Script: /workspace/custom-infer-env.sh
+/infer-model
+└── 1_MDL20240008
+    ├── binary
+    │   ├── base
+    │   │   └── run-application.sh
+    │   └── converted
+    │       └── logs
+    ├── reference
+    └── source
+        ├── flow
+        │   ├── app
+        │   │   ├── README.md
+        │   │   ├── client_langchain.py
+        │   │   ├── client_langchain.py.bak
+        │   │   ├── gunicorn_config.py
+        │   │   ├── main.py
+        │   │   ├── prompts
+        │   │   │   ├── evaluation-org-251020.yaml
+        │   │   │   ├── evaluation.yaml
+        │   │   │   ├── evaluation.yaml.bak
+        │   │   │   ├── evaluation_250625.yaml
+        │   │   │   ├── evaluation_oldd.yaml
+        │   │   │   ├── extraction-org-251020.yaml
+        │   │   │   ├── extraction.yaml
+        │   │   │   └── parameters.yaml
+        │   │   ├── static
+        │   │   │   ├── redoc.standalone.js
+        │   │   │   ├── swagger-ui-bundle.js
+        │   │   │   └── swagger-ui.css
+        │   │   └── utils.py
+        │   ├── client.ipynb
+        │   ├── run-application.sh
+        │   └── test.ipynb
+        └── params
+
+12 directories, 21 files
+file run-application.sh exists in /infer-model/1_MDL20240008/source/flow, export FLOW_APP_DIR: /infer-model/1_MDL20240008/source/flow
+[I 2026-06-09 16:38:00.059] 'run-application.sh' in /infer-model/1_MDL20240008/binary/base/run-application.sh, run run-application.sh instead !
+[I 2026-06-09 16:38:00.059] 'run-application.sh' in /infer-model/1_MDL20240008/binary/base/run-application.sh, run run-application.sh instead !
+/infer-model/1_MDL20240008/binary/base
+/infer-env
+PATH_APP: /infer-model/1_MDL20240008/binary/base/run-application.sh
+APP_DIR: /infer-model/1_MDL20240008/binary/base
+/infer-model/1_MDL20240008/binary/base
+└── run-application.sh
+
+0 directories, 1 file
+/infer-model/1_MDL20240008/binary/base
+/infer-env/logs
+/workspace/.built_in_script/inference/log.conf
+[2026-06-09 16:38:00 +0900] [286] [INFO] Starting gunicorn 23.0.0
+[2026-06-09 16:38:00 +0900] [286] [INFO] Listening at: http://0.0.0.0:8000 (286)
+[2026-06-09 16:38:00 +0900] [286] [INFO] Using worker: uvicorn.workers.UvicornWorker
+[2026-06-09 16:38:00 +0900] [319] [INFO] Booting worker with pid: 319
+[2026-06-09 16:38:00 +0900] [320] [INFO] Booting worker with pid: 320
+[2026-06-09 16:38:01 +0900] [321] [INFO] Booting worker with pid: 321
+[2026-06-09 16:38:01 +0900] [322] [INFO] Booting worker with pid: 322
+[2026-06-09 16:38:01 +0900] [323] [INFO] Booting worker with pid: 323
+[2026-06-09 16:38:01 +0900] [324] [INFO] Booting worker with pid: 324
+[2026-06-09 16:38:01 +0900] [325] [INFO] Booting worker with pid: 325
+[2026-06-09 16:38:01 +0900] [326] [INFO] Booting worker with pid: 326
+run-application.sh: line 63:   286 Killed                  gunicorn main:app --config gunicorn_config.py
+[I 2026-06-09 16:38:07.052] ** End of Custom Image Script: 137
+[I 2026-06-09 16:38:07.153] ** MLDL Simulation app luanching triggered..
+ERROR|2026-06-09 16:38:09|Connection in use: ('0.0.0.0', 8000)
+ERROR|2026-06-09 16:38:09|connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+ERROR|2026-06-09 16:38:10|Connection in use: ('0.0.0.0', 8000)
+ERROR|2026-06-09 16:38:10|connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+ERROR|2026-06-09 16:38:11|Connection in use: ('0.0.0.0', 8000)
+ERROR|2026-06-09 16:38:11|connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+ERROR|2026-06-09 16:38:12|Connection in use: ('0.0.0.0', 8000)
+ERROR|2026-06-09 16:38:12|connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+ERROR|2026-06-09 16:38:13|Connection in use: ('0.0.0.0', 8000)
+ERROR|2026-06-09 16:38:13|connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+ * Serving Flask app "dap_mldl.inference.simulation.simulation_app_core" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ERROR|2026-06-09 16:38:14|Can't connect to ('0.0.0.0', 8000)
+[I 2026-06-09 16:38:40.677] ** Copy User defaults: cp -rfv /infer-env/mldl/default/. /home/ds_user1/
+[I 2026-06-09 16:38:40.699] =========================================================================
+[I 2026-06-09 16:38:40.712] * Hostname / IP : ier2026060033-dp-5c9949d6b4-vwgzt (100.64.248.44)
+[I 2026-06-09 16:38:40.727] * Working Directory : /infer-env
+[I 2026-06-09 16:38:40.750] ** Arguments :/1_MDL20240008/source/flow/run-application.sh
+[I 2026-06-09 16:38:40.768] * Initializing... (MODE: INFER_ENV)
+[I 2026-06-09 16:38:40.784] -------------------------------------------------------------------------
+[I 2026-06-09 16:38:40.799] * INIT Cloud Credentials
+[I 2026-06-09 16:38:40.827] * DONE Cloud Credentials
+[I 2026-06-09 16:38:40.843] * INIT SSH Service
+[I 2026-06-09 16:38:40.910] start SSH Service
+[I 2026-06-09 16:38:40.910] start SSH Service
+ * Starting OpenBSD Secure Shell server sshd
+   ...done.
+[I 2026-06-09 16:38:40.971] * DONE SSH Service
+** PYTHONPATH set to :/infer-model/1_MDL20240008/source/flow
+[I 2026-06-09 16:38:43.988] ** Call Custom Image Script: /workspace/custom-infer-env.sh
+/infer-model
+└── 1_MDL20240008
+    ├── binary
+    │   ├── base
+    │   │   └── run-application.sh
+    │   └── converted
+    │       └── logs
+    ├── reference
+    └── source
+        ├── flow
+        │   ├── app
+        │   │   ├── README.md
+        │   │   ├── client_langchain.py
+        │   │   ├── client_langchain.py.bak
+        │   │   ├── gunicorn_config.py
+        │   │   ├── main.py
+        │   │   ├── prompts
+        │   │   │   ├── evaluation-org-251020.yaml
+        │   │   │   ├── evaluation.yaml
+        │   │   │   ├── evaluation.yaml.bak
+        │   │   │   ├── evaluation_250625.yaml
+        │   │   │   ├── evaluation_oldd.yaml
+        │   │   │   ├── extraction-org-251020.yaml
+        │   │   │   ├── extraction.yaml
+        │   │   │   └── parameters.yaml
+        │   │   ├── static
+        │   │   │   ├── redoc.standalone.js
+        │   │   │   ├── swagger-ui-bundle.js
+        │   │   │   └── swagger-ui.css
+        │   │   └── utils.py
+        │   ├── client.ipynb
+        │   ├── run-application.sh
+        │   └── test.ipynb
+        └── params
+
+12 directories, 21 files
+file run-application.sh exists in /infer-model/1_MDL20240008/source/flow, export FLOW_APP_DIR: /infer-model/1_MDL20240008/source/flow
+[I 2026-06-09 16:38:44.104] 'run-application.sh' in /infer-model/1_MDL20240008/binary/base/run-application.sh, run run-application.sh instead !
+[I 2026-06-09 16:38:44.104] 'run-application.sh' in /infer-model/1_MDL20240008/binary/base/run-application.sh, run run-application.sh instead !
+/infer-model/1_MDL20240008/binary/base
+/infer-env
+PATH_APP: /infer-model/1_MDL20240008/binary/base/run-application.sh
+APP_DIR: /infer-model/1_MDL20240008/binary/base
+/infer-model/1_MDL20240008/binary/base
+└── run-application.sh
+
+0 directories, 1 file
+/infer-model/1_MDL20240008/binary/base
+/infer-env/logs
+/workspace/.built_in_script/inference/log.conf
+[2026-06-09 16:38:44 +0900] [286] [INFO] Starting gunicorn 23.0.0
+[2026-06-09 16:38:44 +0900] [286] [INFO] Listening at: http://0.0.0.0:8000 (286)
+[2026-06-09 16:38:44 +0900] [286] [INFO] Using worker: uvicorn.workers.UvicornWorker
+[2026-06-09 16:38:44 +0900] [319] [INFO] Booting worker with pid: 319
+[2026-06-09 16:38:45 +0900] [320] [INFO] Booting worker with pid: 320
+[2026-06-09 16:38:45 +0900] [321] [INFO] Booting worker with pid: 321
+[2026-06-09 16:38:45 +0900] [322] [INFO] Booting worker with pid: 322
+[2026-06-09 16:38:45 +0900] [323] [INFO] Booting worker with pid: 323
+[2026-06-09 16:38:45 +0900] [324] [INFO] Booting worker with pid: 324
+[2026-06-09 16:38:45 +0900] [325] [INFO] Booting worker with pid: 325
+[2026-06-09 16:38:45 +0900] [326] [INFO] Booting worker with pid: 326
+run-application.sh: line 63:   286 Killed                  gunicorn main:app --config gunicorn_config.py
+[I 2026-06-09 16:38:51.153] ** End of Custom Image Script: 137
+[I 2026-06-09 16:38:51.343] ** MLDL Simulation app luanching triggered..
+ERROR|2026-06-09 16:38:53|Connection in use: ('0.0.0.0', 8000)
+ERROR|2026-06-09 16:38:53|connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+ERROR|2026-06-09 16:38:54|Connection in use: ('0.0.0.0', 8000)
+ERROR|2026-06-09 16:38:54|connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+ERROR|2026-06-09 16:38:55|Connection in use: ('0.0.0.0', 8000)
+ERROR|2026-06-09 16:38:55|connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+ERROR|2026-06-09 16:38:56|Connection in use: ('0.0.0.0', 8000)
+ERROR|2026-06-09 16:38:56|connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+ERROR|2026-06-09 16:38:57|Connection in use: ('0.0.0.0', 8000)
+ERROR|2026-06-09 16:38:57|connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+ * Serving Flask app "dap_mldl.inference.simulation.simulation_app_core" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ERROR|2026-06-09 16:38:58|Can't connect to ('0.0.0.0', 8000)
